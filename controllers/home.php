@@ -2,3 +2,5 @@
 
 
 require("views/home.php");
+
+?>
