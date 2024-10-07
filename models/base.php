@@ -36,3 +36,6 @@ class Base
         return !empty($user);
     }
 }
+
+
+?>

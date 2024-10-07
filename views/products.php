@@ -14,10 +14,9 @@
     <?php 
     foreach($products as $product){
         echo '
-            <h1>'.$product["name"].'</h1>
+            <h2>'.$product["name"].'</h2>
             <p>'.$product["description"].'</p>
-            <p>'.$product["price"].'</p>
-
+            <p>Preço: <span>'.$product["price"].'€</span></p>
         ';
     }
 
