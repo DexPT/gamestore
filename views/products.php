@@ -14,6 +14,8 @@
     <?php 
     foreach($products as $product){
         echo '
+        
+            <img src=" /images/'.$product["image"].'" alt="'.$product["name"].'">
             <h2>'.$product["name"].'</h2>
             <p>'.$product["description"].'</p>
             <p>Preço: <span>'.$product["price"].'€</span></p>
