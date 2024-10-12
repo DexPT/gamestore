@@ -1,12 +1,11 @@
-<?php
+    <?php
 
+    require("models/platforms.php");
 
-require("models/platforms.php");
+    $model = new Platforms();
 
-$model = new Platforms();
+    $platforms = $model -> getPlatforms();
 
-$platforms = $model -> getPlatforms();
+    require("views/home.php");
 
-require("views/home.php");
-
-?>
+    ?>

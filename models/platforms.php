@@ -15,4 +15,14 @@ class Platforms extends Base {
 
         return $query->fetchAll();
     }
+
+    public function getPlatform($platform_id) {
+        $query = $this->db->prepare("
+            SELECT platform_id, name, image
+            FROM platforms
+        ");
+
+        $query->execute([$platform_id]);
+        return $query->fetch();
+    }
 }

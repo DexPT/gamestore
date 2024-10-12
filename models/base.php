@@ -35,7 +35,24 @@ class Base
 
         return !empty($user);
     }
-}
+
+    public function getAll($tabela, $colunas){
+
+        
+       $query = $this->db->prepare('
+            SELECT 
+                '. $colunas .'
+            FROM 
+                '. $tabela .'
+        ');
+    
+        $query->execute();
+        return $query->fetchAll();
+
+    }
+       
+    
+    }
 
 
 ?>

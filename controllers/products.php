@@ -4,8 +4,12 @@ require("models/products.php");
 
 $model = new Products();
 
-$products = $model -> getProducts();
+$title = "Produtos";
 
-require("views/products.php")
+$products = $model->getAllProducts();
+
+var_dump($products);
+
+require("views/products.php");
 
 ?>
