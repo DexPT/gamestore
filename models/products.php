@@ -22,6 +22,13 @@ class Products extends Base
        
         return $this->getAll("products", "product_id, name, price, image, description, stock, platform_id");
     }
+
+
+    public function getProductId($productId){
+
+        return $this->getId("products", "product_id, name, price, image, description, stock, platform_id", "platform_id", $productId);
+        
+    }
 }
 
 ?>

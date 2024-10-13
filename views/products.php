@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?></title>
-</head>
+<?php require("templates/head.php"); ?>
 <body>
     <h1>Products</h1>
     <ul>
 
+        <?php
+        foreach ($products as $product) {
+            echo '
+                <li>
+                    <a href="/singleProduct/?id=' . htmlspecialchars($product["product_id"]) . '">
+
+                        <img src="' . htmlspecialchars(ROOT) . '/images/' . htmlspecialchars($product["image"]) . '" alt="' . htmlspecialchars($product["name"]) . '">
+                        <p>' . htmlspecialchars($product["name"]) . '</p>
+                        <p>' . htmlspecialchars($product["price"]) . ' €</p>
+                        
+                    </a>
+                </li>
+            ';
+        }
+        ?>
 
     </ul>
 </body>

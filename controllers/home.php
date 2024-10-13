@@ -4,7 +4,9 @@
 
     $model = new Platforms();
 
-    $platforms = $model -> getPlatforms();
+    $title = "Game store - A melhor cena da atualidade";
+
+    $platforms = $model->getPlatforms();
 
     require("views/home.php");
 
