@@ -2,7 +2,7 @@
 <html lang="en">
 <?php require("templates/head.php"); ?>
 <body>
-    <h1>Products</h1>
+    <h1><?php echo $title; ?></h1>
     <ul>
 
         <?php
@@ -16,11 +16,15 @@
                         <p>' . htmlspecialchars($product["price"]) . ' €</p>
                         
                     </a>
+                    <button><a href="/cart">Adicionar ao carrinho</a></button>
+                    
                 </li>
             ';
         }
         ?>
 
     </ul>
+
+    <button><a href="/">Voltar ao inicio</a></button>
 </body>
 </html>

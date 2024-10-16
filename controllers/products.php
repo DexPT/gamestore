@@ -1,10 +1,11 @@
 <?php
 
 require("models/products.php");
+require("models/platforms.php");    
 
 $model = new Products();
 
-$title = "Os nossos produtos";
+$title = "Game store - Produtos";
 
 $products = $model->getAllProducts();
 
