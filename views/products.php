@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require("templates/head.php"); ?>
+<?php require("templates/menu.php"); ?> 
 <body>
-    <h1><?php echo $title; ?></h1>
+    <h1 style="text-align: center;"><?php echo $title; ?></h1>
     <ul>
 
         <?php

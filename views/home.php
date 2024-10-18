@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt">
 <?php require("templates/head.php"); ?>
+<?php require("templates/menu.php"); ?> 
 <body>
     <main>
-        <h1>Gamestore</h1>
-        <p>v0.0.01</p>
+        <h1 style="text-align: center;">Gamestore</h1>
+        <p style="text-align: center;">v0.0.01</p>
 
         <div class="platform-container">
         <?php

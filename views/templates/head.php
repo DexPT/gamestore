@@ -33,6 +33,12 @@
             text-decoration: none;
             color: inherit;
         }
+        ul{
+            display:flex; 
+            list-style-type: none; 
+            justify-content:center;
+            gap: 32px;
+        }
         li {
             list-style: none;
         }

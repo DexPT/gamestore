@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require("templates/head.php"); ?>
+<?php require("templates/menu.php"); ?> 
 <body>
     <div>
         <h1><?php echo $singleProduct[0]["name"]; ?></h1>

@@ -8,6 +8,8 @@
 
     $platforms = $model->getPlatforms();
 
+    /* var_dump($platforms); */
+
     require("views/home.php");
 
     ?>
