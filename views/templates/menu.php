@@ -1,7 +1,7 @@
 <nav>
 <ul>
-    <li><a href="<?php echo ROOT; ?>">Home</a></li>
-    <li><a href="<?php echo ROOT; ?>/cart">Carrinho</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="<?= ROOT ?>/cart">Carrinho</a></li>
 
     <?php
         if( isset($_SESSION["user_id"]) ){           

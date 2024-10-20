@@ -66,15 +66,22 @@ class Base
                 '. $campoId .' = ' . $valor . ' 
         ');
 
-
-    
-
         $query->execute();
         return $query->fetchAll();
 
     }
 
-  
+    public function insert($tabela, $colunas, $valores)
+    {
+
+        $query = $this->db->prepare('
+            INSERT INTO ' . $tabela . ' (' . $colunas . ') VALUES (' . $valores . ')
+        ');
+        $query->execute();
+        return $this->db->lastInsertId();
+    }
+
+
 }
 
 ?>

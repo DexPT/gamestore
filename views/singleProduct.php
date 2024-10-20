@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <?php require("templates/head.php"); ?>
 <?php require("templates/menu.php"); ?> 
 <body>
