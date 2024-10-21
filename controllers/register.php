@@ -24,11 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $birth_date = trim($_POST["birth_date"]);
         $email = trim($_POST["email"]);
         $password = trim($_POST["password"]);
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
 
-       $model->insertUser($username, $name, $address, $birth_date, $email, $hashedPassword);  
+       $model->insertUser($username, $name, $address, $birth_date, $email, $password);  
 
         header("Location: " . ROOT . "/login");
         exit();
@@ -37,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
 }
+
+print_r($_POST);
 
 require("views/register.php");
 
