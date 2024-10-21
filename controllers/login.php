@@ -22,7 +22,7 @@
 
         if (!empty($user) && password_verify($_POST["password"], $user["password"])) {
             $_SESSION["user_id"] = $user["user_id"];
-            $_SESSION["username"] = $user["name"];
+            $_SESSION["username"] = $user["username"];
             header("Location: " . ROOT . "/");
             exit();
                 } else {
