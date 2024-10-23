@@ -47,4 +47,93 @@
                 border-collapse: collapse;
             }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const removeButtons = document.querySelectorAll('button[name="remove"]');
+            const changeInputs = document.querySelectorAll('input[name="changeQuantity"]');
+
+        // Update cart total
+        function updateCartTotal() {
+            let total = 0;
+            document.querySelectorAll('tr[data-product_id]').forEach(function(row) {
+                const subtotal = parseFloat(row.querySelector('td:nth-child(4)').textContent.replace('€', ''));
+                total += subtotal;
+            });
+            document.querySelector('tr:last-child td:last-child').textContent = total + '€';
+        }
+
+        // Remover produto
+        for (let button of removeButtons) {
+            button.addEventListener("click", () => {
+                const tr = button.closest('tr');
+                const productId = tr.dataset.product_id;
+
+                if (confirm('Tem certeza de que deseja remover este produto?')) {
+                    fetch("<?= ROOT ?>/requests/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: "request=removeProduct&product_id=" + productId
+                    })
+                    .then(response => response.text()) 
+                    .then(text => {
+                        console.log("Resposta do servidor (removeProduct):", text); 
+                        try {
+                            const result = JSON.parse(text);
+                            if (result.message && result.message === "OK") {
+                                tr.remove();
+                                updateCartTotal();
+                            } else {
+                                alert("Erro ao remover o produto.");
+                            }
+                        } catch (error) {
+                            console.error("Erro ao processar JSON:", error);
+                            alert("Erro inesperado ao processar a resposta do servidor.");
+                        }
+                    })
+                    .catch(error => alert("Erro inesperado: " + error));
+                }
+            });
+        }
+
+        //Quantidade
+        for (let input of changeInputs) {
+            input.addEventListener("change", () => {
+                const tr = input.closest('tr');
+                const productId = tr.dataset.product_id;
+
+                fetch("<?= ROOT ?>/requests/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/x-www-form-urlencoded"
+                    },
+                    body: `request=changeQuantity&quantity=${input.value}&product_id=${productId}`
+                })
+                .then(response => response.text()) 
+                .then(text => {
+                /*   console.log("Resposta do servidor (changeQuantity):", text); */
+
+                    try {
+                        const result = JSON.parse(text); 
+                        if (result.message && result.message === "OK") {
+                            const price = parseFloat(tr.querySelector('td:nth-child(3)').textContent.replace('€', ''));
+                            const newSubtotal = (price * input.value).toFixed(2);
+                            tr.querySelector('td:nth-child(4)').textContent = newSubtotal + '€';
+                            updateCartTotal();
+                        } else {
+                            alert(result.message || "Erro ao atualizar a quantidade.");
+                        }
+                    } catch (error) {
+                        console.error("Erro ao processar JSON:", error);
+                        alert("Erro inesperado ao processar a resposta do servidor.");
+                    }
+                })
+                .catch(error => alert("Erro inesperado: " + error));
+            });
+        }
+    });
+
+    </script>
+
 </head>
