@@ -23,9 +23,6 @@
                     <input type="hidden" name="product_id" value="<?= $singleProduct[0]["product_id"] ?>">
                     <button type="submit" name="send">Comprar</button>
 
-                    <?php echo $singleProduct[0]["product_id"] ?>
-
-                   
             </div>
         </form>
 
