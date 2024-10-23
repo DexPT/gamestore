@@ -2,10 +2,6 @@
 <html lang="pt">
     <?php require("templates/head.php"); ?>
     <?php require("templates/menu.php"); ?> 
-  
-
-
-    
     <body>
         <main>
             <h1>Carrinho</h1>
