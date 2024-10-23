@@ -34,28 +34,23 @@ class Products extends Base
     public function getProductByID($productId){
         return $this->getId("products", "product_id, name, price, image, description, stock, platform_id", "product_id", $productId);
     }
-    
 
-    public function checkStock($item){
-        $query = $this->db->prepare("
-            SELECT product_id, stock, name
-            FROM products
-            WHERE product_id = ?
-            AND stock >= ?
-        ");
+       public function checkStock($item) {
+        
+            $query = $this->db->prepare("
+                SELECT product_id, name, price, stock
+                FROM products
+                WHERE product_id = ?
+                AND stock >= ?
+            ");
 
-        $query->execute([
-            $item["product_id"],
-            $item["quantity"],
-            $item["name"],
-            $item["stock"],
-            $item["price"]
-        ]);
+            $query->execute([
+                $item["product_id"],
+                $item["quantity"]
+            ]);
 
             return $query->fetch();
         }
-
-
 }
 
 ?>
