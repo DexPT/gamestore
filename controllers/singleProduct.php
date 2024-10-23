@@ -17,6 +17,8 @@ if ($_GET["id"]) {
 /* 
 var_dump($singleProduct); */
 
+/* echo $singleProduct[0]["stock"];
+ */
 require("views/singleProduct.php");
 
 

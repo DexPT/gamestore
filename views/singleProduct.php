@@ -9,9 +9,25 @@
         <img src="<?php echo htmlspecialchars(ROOT) . "/images/" . htmlspecialchars($singleProduct[0]["image"]); ?>" alt="<?php echo htmlspecialchars($singleProduct[0]["name"]); ?>">
         <p><?php echo $singleProduct[0]["description"]; ?></p>
         <p><?php echo $singleProduct[0]["price"]; ?> €</p>
-       <!--  <div>Stock: <?php echo $singleProduct[0]["stock"]; ?></div> -->    
-        <button> <a href="/products/?id=<?php echo $singleProduct[0]["platform_id"]; ?>">Voltar</a>
-        <button><a href="/cart">Adicionar ao carrinho</a></button>
+        <form method="POST" action="<?= ROOT ?>/cart/">
+            <div>
+                <label>
+                    Quantidade
+                        <input 
+                            type="number" 
+                            name="quantity" 
+                            required 
+                            min="1" 
+                            max="<?= $singleProduct[0]["stock"] ?>" 
+                            value="1">
+                    <input type="hidden" name="product_id" value="<?= $singleProduct[0]["product_id"] ?>">
+                    <button type="submit" name="send">Comprar</button>
+
+                    <?php echo $singleProduct[0]["product_id"] ?>
+
+                   
+            </div>
+        </form>
 
     </div>
 </body>
