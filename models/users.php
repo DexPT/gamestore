@@ -42,6 +42,22 @@ class User extends Base
     {
         return $this->delete("users", "user_id = {$id}");
     }
+
+    public function getByEmail($email){
+
+        $query = $this->db->prepare("
+
+            SELECT user_id, name, username, email, password
+            FROM users
+            WHERE email = ?
+        ");
+
+        $query->execute([ $email ]);
+
+        return $query->fetch();
+            
+        }
+    
 }
 
 ?>
