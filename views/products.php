@@ -17,8 +17,6 @@
                         <p>' . htmlspecialchars($product["price"]) . ' €</p>
                         
                     </a>
-                    <button><a href="/cart">Adicionar ao carrinho</a></button>
-                    
                 </li>
             ';
         }

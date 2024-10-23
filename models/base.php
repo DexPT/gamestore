@@ -56,15 +56,16 @@ class Base
 
     public function getId($tabela, $colunas, $campoId, $valor = "%")
     {
-
-        $query = $this->db->prepare('
+        $sql = '
             SELECT 
                 ' . $colunas . '
             FROM 
                 ' . $tabela . '
             WHERE 
-                '. $campoId .' = ' . $valor . ' 
-        ');
+                ' . $campoId . ' = ' . $valor . ' 
+        ';
+        /* echo $sql; */
+        $query = $this->db->prepare($sql);
 
         $query->execute();
         return $query->fetchAll();
