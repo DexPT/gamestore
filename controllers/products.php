@@ -14,6 +14,13 @@ if($_GET["id"]) {
 } else {
     $products = $model->getAllProducts();
 }
+if (empty($products)) {
+    http_response_code(404);
+    echo "Não encontrado";
+    echo '<br>';
+    echo '<button><a href="/">Voltar ao início</a></button>';
+    exit; 
+}
 
 /* var_dump($products); */
 

@@ -4,20 +4,25 @@ require("models/singleProduct.php");
 
 $model = new SingleProduct();
 
-
-$singleProduct = $model->getSingleProduct();
-
-$title =  $singleProduct[0]["name"];
-
-if ($_GET["id"]) {
+if (isset($_GET["id"]) && is_numeric($_GET["id"])) {
     $singleProduct = $model->getSingleProduct($_GET["id"]);
 } else {
-    $singleProduct = $model->getSingleProduct();
+   
+    $singleProduct = $model->getSingleProduct(); 
 }
-/* 
-var_dump($singleProduct); */
+
+
+if (empty($singleProduct) || !isset($singleProduct[0])) {
+    http_response_code(404);
+    echo "Não encontrado";
+    echo '<br>';
+    echo '<button><a href="/">Voltar ao início</a></button>';
+    exit; 
+}
+
+
+$title = $singleProduct[0]["name"];
 
 require("views/singleProduct.php");
-
 
 ?>
