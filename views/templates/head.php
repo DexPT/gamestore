@@ -133,6 +133,51 @@
             });
         }
     });
+    
+    document.addEventListener('DOMContentLoaded', function() { 
+        const form = document.getElementById('updateProfileForm');
+        const messageDiv = document.getElementById('message');
+
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch("<?= ROOT ?>/profile/", {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.includes("application/json")) {
+                        return response.json();
+                    } else {
+                        throw new Error("A resposta não está no formato JSON");
+                    }
+                })
+                .then(data => {
+                    if (data.success) {
+                        messageDiv.textContent = 'Perfil atualizado com sucesso!';
+                        messageDiv.style.color = 'green';
+                    } else {
+                        messageDiv.textContent = 'Falha ao atualizar o perfil: ' + data.error;
+                        messageDiv.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    messageDiv.textContent = 'Erro ao atualizar o perfil. Verifique o console para mais detalhes.';
+                    messageDiv.style.color = 'red';
+                });
+            });
+        } else {
+            console.error('O formulário não foi encontrado.');
+        }
+    });
+
+
+
 
     </script>
 

@@ -44,7 +44,7 @@ class User extends Base
 
     public function getUserInfo($userId)
     {
-        $query = $this->db->prepare("SELECT username, email FROM users WHERE user_id = ?");
+        $query = $this->db->prepare("SELECT username, email, name, address, birth_date FROM users WHERE user_id = ?");
         $query->execute([$userId]);
         return $query->fetch();
     }
@@ -54,5 +54,28 @@ class User extends Base
         $query = $this->db->prepare("SELECT * FROM orders WHERE user_id = ?");
         $query->execute([$userId]);
         return $query->fetchAll();
+    }
+
+    public function updateUserProfile($userId, $name, $address, $birth_date, $email, $oldPassword, $newPassword = null)
+    {
+        $query = $this->db->prepare("SELECT password FROM users WHERE user_id = ?");
+        $query->execute([$userId]);
+        $user = $query->fetch();
+
+        if (!$user || !password_verify($oldPassword, $user['password'])) {
+            return false; 
+        }
+
+        if ($newPassword) {
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $updateQuery = "UPDATE users SET name = ?, address = ?, birth_date = ?, email = ?, password = ? WHERE user_id = ?";
+            $params = [$name, $address, $birth_date, $email, $hashedPassword, $userId];
+        } else {
+            $updateQuery = "UPDATE users SET name = ?, address = ?, birth_date = ?, email = ? WHERE user_id = ?";
+            $params = [$name, $address, $birth_date, $email, $userId];
+        }
+
+        $updateStmt = $this->db->prepare($updateQuery);
+        return $updateStmt->execute($params);
     }
 }
