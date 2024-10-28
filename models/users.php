@@ -78,4 +78,11 @@ class User extends Base
         $updateStmt = $this->db->prepare($updateQuery);
         return $updateStmt->execute($params);
     }
+
+        public function getUserAddressById($userId)
+    {
+        $query = $this->db->prepare("SELECT address FROM users WHERE user_id = ?");
+        $query->execute([$userId]);
+        return $query->fetchColumn();
+    }
 }

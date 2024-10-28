@@ -11,7 +11,7 @@
 
     <h2>Minhas Encomendas</h2>
     <?php if (empty($userOrders)): ?>
-        <p>Você ainda não fez nenhuma encomenda.</p>
+        <p>Ainda não fizeste nenhuma encomenda.</p>
     <?php else: ?>
        <table>
     <thead>
@@ -56,12 +56,12 @@
         <input type="email" name="email" value="<?= htmlspecialchars($userInfo['email']); ?>" required>
     </div>
     <div>
-        <label for="current_password">Senha Atual:</label>
+        <label for="current_password">Senha Atual: </label>
         <input type="password" name="old_password" placeholder="Senha Antiga" required>
     </div>
     <div>
         <label for="new_password">Nova Senha:</label>
-        <input type="password" name="new_password" placeholder="Nova Senha (deixe em branco se não quiser mudar)">
+        <input type="password" name="new_password" placeholder="Nova Senha (deixa em branco se não quiseres mudar)">
     </div>
     <br>
     <button type="submit">Atualizar Perfil</button>

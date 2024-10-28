@@ -1,5 +1,7 @@
 <?php
 
+$title = "Game store - Checkout";
+
 if (!isset($_SESSION["user_id"])) {
     header("Location: " . ROOT . "/login/");
     exit;

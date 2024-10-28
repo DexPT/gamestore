@@ -1,5 +1,12 @@
 <?php
 
+$title = "Game store - Carrinho ";
+
+require("models/users.php");
+$userModel = new User();
+$userAddress = $userModel->getUserAddressById($_SESSION["user_id"]);
+
+
 if (isset($_POST["send"])) {
     require("models/products.php");  
 

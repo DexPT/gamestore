@@ -1,5 +1,7 @@
 <?php
 
+$title = "Game store - Registar";
+
 require("models/users.php");
 
 $model = new User();
@@ -36,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 
-print_r($_POST);
+/* print_r($_POST); */
 
 require("views/register.php");
 

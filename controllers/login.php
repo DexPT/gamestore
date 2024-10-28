@@ -1,5 +1,7 @@
 <?php
 
+$title = "Game store - Login";
+
     if( isset($_POST["send"])){
 
        

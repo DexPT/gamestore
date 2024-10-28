@@ -47,16 +47,19 @@
                 </tr>
         ';
     }
-?>
+        ?>
 
-                <tr>
-                    <td colspan="3">Total</td>
-                    <td colspan="2"><?= $total ?>€</td>
-                </tr>
-            </table>
-<?php
-    }
-?>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td colspan="2"><?= $total ?>€</td>
+                        </tr>
+                    </table>
+        <?php
+            }
+        ?>
+        <h3>Morada de Entrega</h3>
+        <p><?php echo htmlspecialchars($userAddress); ?></p>
+
             <nav>
                 <a href="<?= ROOT ?>/">Escolher mais produtos</a>
                 <a href="<?= ROOT ?>/checkout/">Finalizar a encomenda</a>
