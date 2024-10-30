@@ -85,4 +85,19 @@ class User extends Base
         $query->execute([$userId]);
         return $query->fetchColumn();
     }
+
+    public function usernameExists($username) {
+        $query = "SELECT COUNT(*) FROM users WHERE username = :username";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['username' => $username]);
+        return $stmt->fetchColumn() > 0;
+    }
+
+    public function emailExists($email) {
+        $query = "SELECT COUNT(*) FROM users WHERE email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetchColumn() > 0;
+    }
+
 }

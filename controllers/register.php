@@ -19,28 +19,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($isValid) {
-
         $username = trim($_POST["username"]);
         $name = trim($_POST["name"]);
         $address = trim($_POST["address"]);
         $birth_date = trim($_POST["birth_date"]);
         $email = trim($_POST["email"]);
         $password = trim($_POST["password"]);
-    
+        
+        
+        if ($model->usernameExists($username)) {
+            echo "O nome de utilizador já existe. Por favor, escolha outro.";
+        } 
+        
+        else if ($model->emailExists($email)) {
+            echo "O email já está em uso. Por favor, utilize outro.";
+        } 
+        else {
+            $model->insertUser($username, $name, $address, $birth_date, $email, $password);  
 
-       $model->insertUser($username, $name, $address, $birth_date, $email, $password);  
-
-        header("Location: " . ROOT . "/login");
-        exit();
+            header("Location: " . ROOT . "/login");
+            exit();
+        }
     } else {
-        echo "Todos os campos são obrigatórios";
+        echo "Todos os campos são obrigatórios.";
     }
-    
 }
 
-/* print_r($_POST); */
-
 require("views/register.php");
-
 
 ?>
